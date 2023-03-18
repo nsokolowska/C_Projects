@@ -1,0 +1,36 @@
+﻿
+@using System.Collections.Generic;
+
+@using CarInsurance.CustomerModel;
+
+@model List<Customer>
+
+<div class="row no-gutters m-3">
+    <div class="card col-sm-12 col-md-10 col-lg-6 mx-auto shadow">
+        <div class="card-header text-center">
+            <h3 class="m-0">Administration Page</h3>
+            <h5 class="m-0">Customers' Quotes</h5>
+        </div>
+        <div class="card-body">
+
+            @foreach (var customer in Model)
+            {
+                <div class="row mb-3">
+                    <div class="col">
+                        @customer.FirstName
+                    </div>
+                    <div class="col">
+                        @customer.LastName
+                    </div>
+                    <div class="col-4">
+                        @customer.EmailAddress
+                    </div>
+                    <div class="col">
+                        @customer.Quote
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
