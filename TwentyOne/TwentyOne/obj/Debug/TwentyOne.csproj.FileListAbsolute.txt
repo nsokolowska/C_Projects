@@ -1,0 +1,14 @@
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe.config
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\bin\Debug\TwentyOne.pdb
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.AssemblyReference.cache
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.CoreCompileInputs.cache
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.exe
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\Basic_C#_Programs\TwentyOne\TwentyOne\obj\Debug\TwentyOne.pdb
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.AssemblyReference.cache
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\obj\Debug\TwentyOne.csproj.CoreCompileInputs.cache
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\obj\Debug\TwentyOne.exe
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\obj\Debug\TwentyOne.pdb
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe.config
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\bin\Debug\TwentyOne.exe
+C:\Users\Natalia Sokolowska\OneDrive\Pulpit\C-Sharp-Coding-Projects\TwentyOne\TwentyOne\bin\Debug\TwentyOne.pdb
