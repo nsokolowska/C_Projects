@@ -2,9 +2,9 @@
 
 
 ## Projects:
-- CarInsurance
-- NewsletterApp
-- TwentyOne
+- [Car Insurance](https://github.com/nsokolowska/C_Projects/tree/main/CarInsurance)
+- [NewsletterApp](https://github.com/nsokolowska/C_Projects/tree/main/NewsletterApp)
+- [TwentyOne](https://github.com/nsokolowska/C_Projects/tree/main/TwentyOne)
 
 ### Car Insurance
 This projects is MVC web application that mimics a car insurance website. It takes user's input on policy information and calculates a quote based on business logic. There is also an admin page that allows staff to vew all of the quotes that have been issued.
