@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CarInsurance.CustomerModel;
 using CarInsurance.Models;
 
 namespace CarInsurance.Controllers
@@ -47,13 +46,15 @@ namespace CarInsurance.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,EmailAddress,DateOfBirth,CarYear,CarMake,CarModel,DUI,SpeedingTickets,CoverageType,Quote")] Insuree insuree)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,EmailAddress,DateOfBirth,CarYear,CarMake,CarModel,DUI,SpeedingTickets,CoverageType")] Insuree insuree)
         {
             if (ModelState.IsValid)
             {
                 db.Insurees.Add(insuree);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                insuree.Quote = GetQuote(insuree);
+                db.SaveChanges();
+                return RedirectToAction("Quote", insuree);
             }
 
             return View(insuree);
@@ -87,7 +88,7 @@ namespace CarInsurance.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(insuree);
+            return View();
         }
 
         // GET: Insuree/Delete/5
@@ -127,51 +128,38 @@ namespace CarInsurance.Controllers
 
         public ActionResult Admin()
         {
-            using (InsuranceEntities db = new InsuranceEntities())
-            {
-                var customers = new List<Customer>();
-                foreach (Insuree insuree in db.Insurees)
-                {
-                    var customer = new Customer();
-                    customer.FirstName = insuree.FirstName;
-                    customer.LastName = insuree.LastName;
-                    customer.EmailAddress = insuree.EmailAddress;
-                    customer.DateOfBirth = insuree.DateOfBirth;
-                    customer.CarYear = insuree.CarYear;
-                    customer.CarMake = insuree.CarMake;
-                    customer.CarModel = insuree.CarModel;
-                    customer.SpeedingTickets = insuree.SpeedingTickets;
-                    customer.DUI = insuree.DUI;
-                    customer.CoverageType = insuree.CoverageType;
-                    customers.Add(customer);
-                }
+                    
+            return View(db.Insurees.ToList());
 
-                foreach (Customer customer in customers)
-                {
-                    var Base = 50.0m;
-                    var Age = DateTime.Now.Year - customer.DateOfBirth.Year;
-                    var AgeAllowance = 25.0m;
-                    if (Age < 18) AgeAllowance = 100.0m;
-                    else if (Age > 19 && Age < 25) AgeAllowance = 50.0m;
-                    var AdditionalforCarYear = 0.0m;
-                    if (customer.CarYear < 2000) AdditionalforCarYear = 25.0m;
-                    else if( customer.CarYear > 2015) AdditionalforCarYear = 25.0m; 
-                    var CarMakeAdditionalPrice = 0.0m;
-                    if (customer.CarMake == "Porshe") CarMakeAdditionalPrice = 25.0m;
-                    var CarModelAdditionalPrice = 0.0m;
-                    if (customer.CarModel == "Carrera") CarModelAdditionalPrice = 25.0m;
-                    var PriceforSpeedingTikects = 0.0m;
-                    if (customer.SpeedingTickets > 0) PriceforSpeedingTikects = 10.0m * customer.SpeedingTickets;
-                    customer.Quote = 12 * (Base + AgeAllowance + AdditionalforCarYear + PriceforSpeedingTikects) + CarMakeAdditionalPrice + CarModelAdditionalPrice;
-                    if (customer.DUI == false) customer.Quote = customer.Quote * 1.25m;
-                    if (customer.CoverageType == false) customer.Quote = customer.Quote * 1.5m;
-                   
-                }
-                return View(customers);
-            }
+        }
+        public decimal GetQuote(Insuree insuree)
+        {
+            
+            var Base = 50.0m;
+            var Age = DateTime.Now.Year - insuree.DateOfBirth.Year;
+            var AgeAllowance = 25.0m;
+            if (Age < 18) AgeAllowance = 100.0m;
+            else if (Age > 19 && Age < 25) AgeAllowance = 50.0m;
+            var AdditionalforCarYear = 0.0m;
+            if (insuree.CarYear < 2000) AdditionalforCarYear = 25.0m;
+            else if (insuree.CarYear > 2015) AdditionalforCarYear = 25.0m;
+            var CarMakeAdditionalPrice = 0.0m;
+            if (insuree.CarMake == "Porshe") CarMakeAdditionalPrice = 25.0m;
+            var CarModelAdditionalPrice = 0.0m;
+            if (insuree.CarModel == "Carrera") CarModelAdditionalPrice = 25.0m;
+            var PriceforSpeedingTikects = 0.0m;
+            if (insuree.SpeedingTickets > 0) PriceforSpeedingTikects = 10.0m * insuree.SpeedingTickets;
+            insuree.Quote = 12 * (Base + AgeAllowance + AdditionalforCarYear + PriceforSpeedingTikects) + CarMakeAdditionalPrice + CarModelAdditionalPrice;
+            if (insuree.DUI == true) insuree.Quote *= 1.25m;
+            if (insuree.CoverageType == true) insuree.Quote *= 1.5m;
+            return insuree.Quote;
+        }
 
-
-                   
+        public ActionResult Quote(Insuree insuree)
+        {
+            
+            return View(insuree);
+            
         }
     }
 }
