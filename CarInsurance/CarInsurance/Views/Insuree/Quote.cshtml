@@ -1,0 +1,104 @@
+﻿@model CarInsurance.Models.Insuree
+
+@{
+    ViewBag.Title = "Quote";
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Success!</h1>
+        <h3 class="lead">Your quote is: @Html.DisplayFor(model => model.Quote).</h3>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Please check your details</h3>
+        <hr />
+        <dl class="dl-horizontal card-text">
+            <dt>
+                First Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                Last Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                Email Address
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmailAddress)
+            </dd>
+
+            <dt>
+                Date of Birth
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
+
+            <dt>
+                Car Year
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarYear)
+            </dd>
+
+            <dt>
+                Car Make
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarMake)
+            </dd>
+
+            <dt>
+                Car Model
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarModel)
+            </dd>
+
+            <dt>
+                DUI
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DUI)
+            </dd>
+
+            <dt>
+                Speeding Tickets
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SpeedingTickets)
+            </dd>
+
+            <dt>
+                Coverage Type
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CoverageType)
+            </dd>
+        </dl>
+    </div>
+</div>
+ <br />
+<div>
+    <button type="button" class="btn btn-light btn-lg">@Html.ActionLink("Back to Home", "Index", "Home")</button>
+    <button type="button" class="btn btn-light btn-lg">@Html.ActionLink("Create your quote again", "Create")</button>
+</div>
