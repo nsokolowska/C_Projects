@@ -51,7 +51,6 @@ namespace CarInsurance.Controllers
             if (ModelState.IsValid)
             {
                 db.Insurees.Add(insuree);
-                db.SaveChanges();
                 insuree.Quote = GetQuote(insuree);
                 db.SaveChanges();
                 return RedirectToAction("Quote", insuree);
@@ -134,28 +133,44 @@ namespace CarInsurance.Controllers
         }
         public decimal GetQuote(Insuree insuree)
         {
-            
+
             var Base = 50.0m;
             var Age = DateTime.Now.Year - insuree.DateOfBirth.Year;
-            var AgeAllowance = 25.0m;
-            if (Age < 18) AgeAllowance = 100.0m;
-            else if (Age > 19 && Age < 25) AgeAllowance = 50.0m;
-            var AdditionalforCarYear = 0.0m;
-            if (insuree.CarYear < 2000) AdditionalforCarYear = 25.0m;
-            else if (insuree.CarYear > 2015) AdditionalforCarYear = 25.0m;
-            var CarMakeAdditionalPrice = 0.0m;
-            if (insuree.CarMake == "Porshe") CarMakeAdditionalPrice = 25.0m;
-            var CarModelAdditionalPrice = 0.0m;
-            if (insuree.CarModel == "Carrera") CarModelAdditionalPrice = 25.0m;
-            var PriceforSpeedingTikects = 0.0m;
-            if (insuree.SpeedingTickets > 0) PriceforSpeedingTikects = 10.0m * insuree.SpeedingTickets;
-            insuree.Quote = 12 * (Base + AgeAllowance + AdditionalforCarYear + PriceforSpeedingTikects) + CarMakeAdditionalPrice + CarModelAdditionalPrice;
-            if (insuree.DUI == true) insuree.Quote *= 1.25m;
-            if (insuree.CoverageType == true) insuree.Quote *= 1.5m;
+            if (Age <= 18)
+            {
+                Base += 10m;
+            }
+            else if (Age >= 19 && Age <= 25)
+            {
+                Base += 50m;
+            }
+            else
+            {
+                Base += 25;
+            };
+
+            if (insuree.CarMake == "Porshe")
+            {
+                Base += 25m;
+            }
+            else if (insuree.CarMake == "Porshe" && insuree.CarModel == "911 Carrera")
+            {
+                Base += 50m;
+            }
+
+            if (insuree.CarYear <= 2000 || insuree.CarYear >= 2015)
+            {
+                Base += 25m;
+            }
+            if (insuree.DUI == true) Base *= 1.25m;
+            if (insuree.CoverageType == true) Base *= 1.5m;
+
+            insuree.Quote = Base;
+
             return insuree.Quote;
         }
 
-        public ActionResult Quote(Insuree insuree)
+            public ActionResult Quote(Insuree insuree)
         {
             
             return View(insuree);
