@@ -134,7 +134,7 @@ namespace CarInsurance.Controllers
         public decimal GetQuote(Insuree insuree)
         {
 
-            var Base = 50.0m + (insuree.SpeedingTickets *10);
+            var Base = 50.0m;
             var Age = DateTime.Now.Year - insuree.DateOfBirth.Year;
             if (Age <= 18)
             {
@@ -162,8 +162,13 @@ namespace CarInsurance.Controllers
             {
                 Base += 25m;
             }
+            if (insuree.SpeedingTickets > 0)
+            {
+                Base += insuree.SpeedingTickets * 10;
+            }
             if (insuree.DUI == true) Base *= 1.25m;
             if (insuree.CoverageType == true) Base *= 1.5m;
+            
 
             insuree.Quote = Base;
 
